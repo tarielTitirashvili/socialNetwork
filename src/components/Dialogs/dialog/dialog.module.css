@@ -1,0 +1,19 @@
+.friend{
+    font-size: 18px;
+}
+.friend a{
+    text-decoration: none;
+}
+.friend.active a{
+    color: gold;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.image{
+    width: 50px;
+    border-radius: 25px;
+}
+.name{
+    display: flex;
+    align-items: center;
+}

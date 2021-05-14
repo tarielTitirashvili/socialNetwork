@@ -1,0 +1,14 @@
+.content{
+    background-color: magenta;
+    width: 100%;
+}
+.imgMain{
+    width: 100%;
+}
+.avatarName{
+    padding-top: 2%;
+    display: flex;
+}
+.image{
+    width: 15%;
+}

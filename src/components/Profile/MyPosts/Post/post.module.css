@@ -1,0 +1,8 @@
+.post_container{
+    display: flex;
+    align-items: center;
+}
+.post_container img{
+    width: 70px;
+    border-radius: 35px;
+}

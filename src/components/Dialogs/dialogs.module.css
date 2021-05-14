@@ -1,0 +1,72 @@
+.backGround{
+    background-color: magenta;
+    width: 100%;
+    padding-top: 2%;
+}
+.dialogsWrapper{
+    display: flex;
+    justify-content: space-around;
+    padding-left: 15px;
+    height: 100%;
+}
+.friends{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.friend{
+    font-size: 18px;
+}
+.friend a{
+    text-decoration: none;
+}
+.friendsTitle{
+    font-size: x-large;
+}
+.DialogContainer{
+    margin-left: 50px;
+    width: 100%;
+}
+.dialogText{
+    background-color: chartreuse;
+    padding: 10px;
+    border-radius: 10px;
+}
+.friend.active a{
+    color: gold;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.send{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+}
+.send button{
+    border: none;
+    margin: 0;
+    width: auto;
+    overflow: visible;
+
+    background: transparent;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+    background-color: blue;
+    color: white;
+}
+.send textarea{
+    background-color: deepskyblue;
+}

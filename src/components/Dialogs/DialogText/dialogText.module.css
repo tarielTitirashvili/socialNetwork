@@ -1,0 +1,17 @@
+.dialogText{
+    padding: 10px;
+    border-radius: 10px;
+}
+.dialogConteiner{
+    display: flex;
+    justify-content: left;
+}
+.other{
+    display: flex;
+    justify-content: center;
+}
+.backColor{
+    background-color: chartreuse;
+    padding: 10px;
+    border-radius: 10px;
+}
