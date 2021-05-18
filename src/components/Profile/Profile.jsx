@@ -1,30 +1,42 @@
 import React from 'react'
-import s from './Profile.module.css'
+import css from './Profile.module.css'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
+import Loading from '../Loading/Loading'
+import FB from '../../images/fbIcon.jpg'
 
 const ProfileInfo = (props) => {
-  return (
-    <div>
-      <div className={s.avatarName}>
-        <img className={s.image} src = {props.url} alt='two dogs' />
-        <div>{props.avatarName}</div>
+  if(!props.profile){
+    return <Loading />
+  }else{
+    debugger
+    return (
+      <div className = {css.profile_container}>
+        <div className={css.avatarName}>
+          <img className={css.image} src = {props.profile.data.photos.large} alt='two dogs' />
+          <div className = {css.user_name} >{props.profile.data.fullName}
+          <div className = {css.contacts} >contacts
+             { props.profile.data.contacts.facebook ? <a href = {props.profile.data.contacts.facebook} target = 'blank' > <img className = {css.icons} src ={FB} alt = 'facebook' /></a> : '' } </div>
+          </div>
+          <div> 
+          { props.profile.data.lookingForAJob ? <div> I am looking for a job: </div> : '' }
+            { props.profile.data.lookingForAJobDescription ? <div> { props.profile.data.lookingForAJobDescription } </div> : '' }
+          </div>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
-
 
 const Profile = (props) => {
   return (
-    <div className={s.content}>
-      <div>
-        <img className={s.imgMain} src='https://images.ctfassets.net/l3l0sjr15nav/79eVkJy3VSEo6WQYqqiiay/ac6ae26ff77746ca1b09f39fe53aab21/organize-large_2x.png' alt='a' />
-      </div>
-      <ProfileInfo avatarName = "atrial" url = 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/large-dogs-rees-labs-1586532550.jpg?crop=0.667xw:1.00xh;0.123xw,0&resize=640:*'/>
+    <div className={css.content}>
+      <div className = { css.wrapper }>
+      <ProfileInfo profile = {props.profile} />
       <MyPostsContainer
       posts = { props.data }
       dispatch = { props.dispatch }
       />
+      </div>
     </div>
   )
 }

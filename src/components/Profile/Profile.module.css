@@ -8,7 +8,25 @@
 .avatarName{
     padding-top: 2%;
     display: flex;
+    font-size: x-large;
+    font-weight: 700;
 }
 .image{
     width: 15%;
+}
+.profile_container{
+    padding-bottom: 2%;
+}
+.wrapper{
+    padding-left: 2%;
+}
+.user_name{
+    padding-left: 2%;
+}
+.icons{ 
+    width: 6%;
+}
+.contacts{
+    font-size: 20px;
+    font-weight: 400;
 }

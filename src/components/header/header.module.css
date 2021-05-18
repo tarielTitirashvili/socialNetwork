@@ -2,6 +2,8 @@
     width: 100%;
     background-color: chartreuse;
     margin-bottom: 1%;
+    display: flex;
+    justify-content: space-between;
   }
 .image{
     width: 100px;

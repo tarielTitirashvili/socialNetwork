@@ -1,13 +1,15 @@
 import { createStore, combineReducers } from "redux"
 import addMassageReducer from "./reducer/addMassageReducer"
-import addPostsReducer from "./reducer/addPostsReducer"
+import loginReducer from "./reducer/loginReducer"
+import profileReducer from "./reducer/profileReducer"
 import usersReducer from "./reducer/usersReducer"
 
 let reducers = combineReducers(
     {
         dialogsPage: addMassageReducer,
-        profilePage: addPostsReducer,
+        profilePage: profileReducer,
         usersPage: usersReducer,
+        login: loginReducer,
     }
 )
 

@@ -1,19 +1,19 @@
 import css from './App.module.css'
-import Header from './components/header/header';
 import Nav from './components/nav/nav';
-import Profile from './components/Profile/Profile';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import { BrowserRouter, Route } from 'react-router-dom'
 import UsersContainer from './components/users/UsersContainer'
+import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/header/headerContainer';
 
 function App(props) {
   return (
     <BrowserRouter>
       <div>
-        <Header />
+        <HeaderContainer />
         <div className={css.container}>
           <Nav firstFriends={props.store.dialogsPage.dialogFriends} />
-          <Route path="/profile" render={() => <Profile/>}
+          <Route path="/profile/:userId?" render={() => <ProfileContainer />}
           />
           <Route path="/massage" render={() => <DialogsContainer/>}
           />
