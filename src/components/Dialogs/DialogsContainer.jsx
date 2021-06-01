@@ -1,25 +1,25 @@
 import { connect } from 'react-redux'
-import { addNewMassageAction, updateNewMassageTextAction } from '../../redux/reducer/addMassageReducer'
+import { compose } from 'redux'
+import { addNewMassageAction } from '../../redux/reducer/addMassageReducer'
+import { LoginRedirect } from '../Hoc/LoginRedirect'
 import Dialogs from './Dialogs'
 
 const mapStateToProps = (state) => {
     return {
         newMassageText: state.dialogsPage.newMassageText,
         massages: state.dialogsPage.massages,
-        dialogFriends: state.dialogsPage.dialogFriends
+        dialogFriends: state.dialogsPage.dialogFriends,
+        isAuthorized: state.login.isAuthorized,
     }
 }
 const mapDispatchToProps = (dispatch) => {
+    LoginRedirect(mapDispatchToProps)
     return {
-        addNewMassageAction() {
-            dispatch(addNewMassageAction())
+        addNewMassageAction(massage) {
+            dispatch(addNewMassageAction(massage))
         },
-        updateNewMassageTextAction(text) {
-            let action = updateNewMassageTextAction(text)
-            dispatch(action)
-        }
     }
 }
-
-const MapDialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
-export default MapDialogsContainer
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps)
+)(Dialogs)

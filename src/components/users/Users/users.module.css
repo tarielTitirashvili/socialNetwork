@@ -14,6 +14,9 @@
     display: flex;
     justify-content: left;
 }
+.user-container :nth-child(1) {
+    background-color: cyan;
+}
 .users_container{
     width: 100%;
 }

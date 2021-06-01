@@ -1,0 +1,9 @@
+.wrapper{
+    background-color: #e0e4e7;
+    width: 100%;
+}
+.onError{
+    color: red;
+    font-size: 20px;
+    font-weight: 700;
+}

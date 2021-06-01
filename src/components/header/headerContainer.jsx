@@ -1,24 +1,39 @@
-import axios from "axios"
 import React from "react"
 import { Fragment } from "react"
 import Header from './header'
+import { loginRequest, logoutCaller, setUserLoginDataAC, userImageUrlAc } from '../../redux/reducer/loginReducer'
+import { connect } from "react-redux"
 
-class HeaderContainer extends React.Component {
-    componentDidMount(){
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{withCredentials: true} )
-      .then((response) => {
-        console.log(response)
-      })
-    }
+export class HeaderContainer extends React.Component {
+  
   render() {
     return (
         <Fragment>
             <Header
-            {...this.props}
+            login = {this.props.login}
+            isAuthorized = {this.props.isAuthorized}
+            logoutCaller = {this.props.logoutCaller}
             />
         </Fragment>
     )
   }
 }
 
-export default HeaderContainer
+let mapStateToProps =(state)=> {
+  return{
+  login: state.login.login,
+  isAuthorized: state.login.isAuthorized,
+  imageUrl: state.login.imageUrl
+  }
+}
+
+let mapDispatchToProps = (dispatch) =>{
+  return{
+    setUserLoginData:(id, email, login) => {dispatch(setUserLoginDataAC(id, email, login))},
+    userImageUrl: (url) =>{dispatch(userImageUrlAc(url))},
+    loginRequest() {dispatch(loginRequest())},
+    logoutCaller() {dispatch(logoutCaller())}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (HeaderContainer)

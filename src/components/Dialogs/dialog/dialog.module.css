@@ -5,7 +5,7 @@
     text-decoration: none;
 }
 .friend.active a{
-    color: gold;
+    color: rgb(174, 0, 255);
     font-size: 20px;
     font-weight: bolder;
 }

@@ -39,7 +39,7 @@ const addMassageReducer = (state = initialState, action) => {
       stateCopy.massages = [ ...state.massages ]
       let newMassageContent = {
         id: 4,
-        massage: stateCopy.newMassageText,
+        massage: action.massage,
         me: true
       }
       stateCopy.massages.push(newMassageContent)
@@ -56,9 +56,6 @@ const addMassageReducer = (state = initialState, action) => {
 
 }
 
-export const addNewMassageAction = () => ({ type: addNewMassageCaller })
-
-export const updateNewMassageTextAction = (currentText) => ({ type: updateNewMassageTextCaller, text: currentText })
-
+export const addNewMassageAction = (massage) => ({ type: addNewMassageCaller, massage })
 
 export default addMassageReducer

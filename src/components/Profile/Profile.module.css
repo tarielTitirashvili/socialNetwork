@@ -1,5 +1,5 @@
 .content{
-    background-color: magenta;
+    background-color: #e0e4e7;
     width: 100%;
 }
 .imgMain{
@@ -23,7 +23,7 @@
 .user_name{
     padding-left: 2%;
 }
-.icons{ 
+.icons{
     width: 6%;
 }
 .contacts{

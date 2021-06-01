@@ -1,44 +1,32 @@
 import React from "react"
 import { connect } from "react-redux"
-import { followAC,unFollowAC,satUsersAC,changePageAC,totalCountAC,loadingAC } from "../../redux/reducer/usersReducer"
+import { follow, unFollow, changePageAC, getUsersThunkAC } from "../../redux/reducer/usersReducer"
 import Users from "./Users/Users"
-import * as axios from "axios"
 import Loading from "../Loading/Loading"
+import { compose } from "redux"
+import { getAllUsers, getPageSize,getTotalCount,getCurrentPageIndex,getLoadingStatus,getDisableFollowing } from "../../redux/selectors/usersSelector"
 
-class UsersAPI extends React.Component {
+class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.loadingImgCaller( !this.props.loading )
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page${this.props.currentPage}&count=${this.props.pagesize} `)
-      .then((response) => {
-        this.props.setUsers(response.data.items)
-        this.props.setTotalCount(response.data.totalCount)
-        this.props.loadingImgCaller( !this.props.loading )
-      })
+    this.props.getUsersThunk(this.props.currentPage, this.props.pagesize)
   }
   onPageChanged = (pageNumber) => {
     this.props.callNewPage(pageNumber)
-    this.props.loadingImgCaller( !this.props.loading )
-    axios.get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pagesize} `
-      )
-      .then((response) => {
-          this.props.setUsers(response.data.items)
-          this.props.loadingImgCaller( !this.props.loading )
-        })
+    this.props.getUsersThunk(this.props.currentPage, this.props.pagesize)
   }
   render() {
     return (
     <div>
            { this.props.loading ? <Loading /> : null }
         <Users
+          follow = {this.props.follow}
+          unFollow = {this.props.unFollow}
           pagesize={this.props.pagesize}
           totalCount={this.props.totalCount}
           users={this.props.users}
           currentPage={this.props.currentPage}
-          follow={this.props.follow}
-          unFollow={this.props.unFollow}
-          setTotalCount={this.props.setTotalCount}
           onPageChanged={this.onPageChanged}
+          disableFollowing = {this.props.disable}
         />
       </div>
     )
@@ -47,36 +35,31 @@ class UsersAPI extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pagesize: state.usersPage.pagesize,
-    totalCount: state.usersPage.totalCount,
-    currentPage: state.usersPage.currentPage,
-    loading: state.usersPage.loading,
+    users: getAllUsers(state),
+    pagesize: getPageSize(state),
+    totalCount: getTotalCount(state),
+    currentPage: getCurrentPageIndex(state),
+    loading: getLoadingStatus(state),
+    disable: getDisableFollowing(state),
   }
 }
 let mapDispatchToProps = (dispatch) => {
   return {
     follow(userId) {
-      dispatch(followAC(userId))
+      dispatch(follow(userId))
     },
     unFollow(userId) {
-      dispatch(unFollowAC(userId))
-    },
-    setUsers(user) {
-      dispatch(satUsersAC(user))
+      dispatch(unFollow(userId))
     },
     callNewPage (page)  {
       dispatch(changePageAC(page))
     },
-    setTotalCount(totalCount) {
-      dispatch(totalCountAC(totalCount))
-    },
-    loadingImgCaller:(loading) =>{
-      dispatch(loadingAC(loading))
+    getUsersThunk(currentPage, pagesize){
+      dispatch(getUsersThunkAC(currentPage, pagesize))
     }
   }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPI);
-
-export default UsersContainer
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(UsersContainer)

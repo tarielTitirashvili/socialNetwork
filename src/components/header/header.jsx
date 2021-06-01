@@ -1,12 +1,17 @@
 import React from 'react'
 import css from './header.module.css'
-import LogIn from './SingIn/SingIn'
+import SingIn from './SingIn/SingIn'
 
-const Header = () =>{
+const Header = (props) =>{
     return(
         <header className = {css.main__header}>
             <img className = {css.image} src='https://api.freelogodesign.org/assets/thumb/logo/3343895_400.png' alt='logo'/>
-            <LogIn />
+            <SingIn 
+                logIn = { props.login } 
+                isAuthorized = { props.isAuthorized } 
+                imageUrl = { props.imageUrl }
+                logoutCaller = { props.logoutCaller } 
+            />
         </header>
     )
 }
