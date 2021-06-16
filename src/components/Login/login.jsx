@@ -10,13 +10,16 @@ import { Redirect } from 'react-router'
 
 const Login = (props) =>{
     let onSubmit = (data)=>{
-        props.checkLoginData( data.email, data.password, data.rememberMe )
+        props.checkLoginData( data.email, data.password, data.rememberMe, data.captcha )
     }
     if(props.isAuthorized === true)return <Redirect to = '/profile' />
     return(
         <div className = {css.wrapper}>
             <h2>login</h2>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm 
+                onSubmit={onSubmit}
+                captchaURL = {props.captchaURL}
+            />
         </div>
     )
 }

@@ -16,12 +16,11 @@ const SingIn = (props) =>{
                 </div>
                 <div className = {css.login}>
                     { props.isAuthorized
-                     ? <div> {props.logIn} <button className = {css.login_button} onClick = {onClick}>Logout</button> </div>
-                     : <button className = {css.login_button}>login</button> }
+                     ? <div> {props.logIn} <button className = "btn btn-outline-danger  my-2 my-sm-0" onClick = {onClick}>Logout</button> </div>
+                     : <button className = "btn btn-outline-danger  my-2 my-sm-0">login</button> }
                 </div>
             </NavLink>
         </div>
     )
 }
-
 export default SingIn

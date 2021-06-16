@@ -2,11 +2,17 @@ import React from 'react'
 import css from './Profile.module.css'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
 import Loading from '../Loading/Loading'
-import FB from '../../images/fbIcon.jpg'
 import defaultPhoto from '../../images/user-mock.png'
 import StatusHook from './Status/StatusHook'
+import ProfileDescription from './ProfileDescription/ProfileDescription'
 
 const ProfileInfo = (props) => {
+
+  const onAddPhoto = (e) =>{
+    if(e.target.files.length){
+      props.savePhoto(e.target.files[0])
+    }
+  }
   if(!props.profile){
     return <Loading />
   }else{
@@ -14,21 +20,25 @@ const ProfileInfo = (props) => {
     return (
       <div className = {css.profile_container}>
         <div className={css.avatarName}>
-          <img className={css.image} src = { largePhoto? largePhoto: defaultPhoto } alt='two dogs' />
+          <img className={css.image} src = { props.profile.data.photos.large? largePhoto: defaultPhoto } alt='two dogs' />
           <div className = {css.user_name} >{props.profile.data.fullName}
-          <div className = {css.contacts} >contacts
-             { props.profile.data.contacts.facebook ? <a href = {props.profile.data.contacts.facebook} target = 'blank' > <img className = {css.icons} src ={FB} alt = 'facebook' /></a> : '' } </div>
           </div>
         </div>
           <div className = {css.container}> 
-          { props.profile.data.lookingForAJob ? <div> I am looking for a job: </div> : '' }
-            { props.profile.data.lookingForAJobDescription ? <div> { props.profile.data.lookingForAJobDescription } </div> : '' }
+
+            {props.isOwner?<input type = {'file'} onChange = {onAddPhoto} className="form-label" />: ''}
             <StatusHook
               updateStatus = { props.updateStatus }
               status = { props.status }
             />
+            <ProfileDescription
+              editModeTrue = {props.editModeTrue}
+              editMode = {props.editMode}
+              profile = {props.profile}
+              isOwner = {props.isOwner}
+              updateProfileData = {props.updateProfileData}
+            />
           </div>
-        
       </div>
     )
   }
@@ -39,6 +49,11 @@ const Profile = (props) => {
     <div className={css.content}>
       <div className = { css.wrapper }>
       <ProfileInfo
+        editModeTrue = {props.editModeTrue}
+        editMode = {props.editMode}
+        updateProfileData = {props.updateProfileData}
+        savePhoto = {props.savePhoto}
+        isOwner = {props.isOwner}
         profile = {props.profile} 
         status = {props.status}
         updateStatus = { props.updateStatus }

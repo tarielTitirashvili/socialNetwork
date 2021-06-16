@@ -9,7 +9,7 @@ const MassageTextForm = (props) => {
     return (
         <form onSubmit = { props.handleSubmit }>
             <Field component = {Textarea} validate = {[requiredField, maxlength50]} placeholder = {'enter your massage'} name ={'massage'}/>
-            <button>send</button>
+            <button className="btn btn-info">send</button>
         </form>
     )
 }

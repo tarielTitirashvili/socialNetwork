@@ -1,0 +1,11 @@
+.Contacts_title{
+    font-size: 16px;
+    font-weight: 700;
+    padding-top: 8px;
+    padding-bottom: 4px;
+}
+.on_error{
+    color: red;
+    font-size: 20px;
+    font-weight: 700;
+}

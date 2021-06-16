@@ -5,7 +5,7 @@ import css from './nav.module.css'
 
 const Nav = (props) => {
     let friends = props.firstFriends
-    let friendsRender = friends.map(F =><FirstThreeFriends friendName = {F.firstFriends} url = {F.url} name = {F.name} kay = {F.id} /> )
+    let friendsRender = friends.map((F) =><FirstThreeFriends  key = {F.id} id = {F.id} friendName = {F.firstFriends} url = {F.url} name = {F.name} /> )
     return (
         <nav className={css.nav}>
             <ul className = { css.navList } > 

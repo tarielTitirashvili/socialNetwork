@@ -11,11 +11,10 @@ const Dialogs = (props) => {
 
     let massages = props.massages
 
-    let renderMassages = massages.map(d => <DialogText kay={ d.id } massage={ d.massage } me={ d.me } />)
+    let renderMassages = massages.map((d) => <DialogText key={ d.id } id = {d.id} massage={ d.massage } me={ d.me } />)
 
-    let dialogs = dialogItems.map(d => <Dialog pictureUrl={ d.url } name={ d.name } kay={ d.id }
+    let dialogs = dialogItems.map((d)=> <Dialog key={ d.id } pictureUrl={ d.url } name={ d.name } 
          massage={ massages } />)
-
 
     let send = (c) => {
         props.addNewMassageAction(c.massage)

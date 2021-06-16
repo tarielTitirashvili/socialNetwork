@@ -8,8 +8,8 @@ class LoginContainer extends React.Component{
     return <Login
         email = { this.props.email }
         checkLoginData = { this.props.checkLoginData }
-        logout = { this.props.logout }  
         isAuthorized = { this.props.isAuthorized }
+        captchaURL = { this.props.captchaURL }
         />
     }
 }
@@ -18,13 +18,14 @@ class LoginContainer extends React.Component{
 let mapStateToProps = (state) => {
     return{
         email: state.login.email,
-        isAuthorized: state.login.isAuthorized
+        isAuthorized: state.login.isAuthorized,
+        captchaURL: state.login.captchaURL
     }
 }
 let mapDispatchToProps = (dispatch) => {
     return{
-        checkLoginData: (email, password, rememberMe)=>{
-            dispatch(checkLoginData(email, password, rememberMe))
+        checkLoginData: (email, password, rememberMe, captcha)=>{
+            dispatch(checkLoginData(email, password, rememberMe, captcha))
         },
         logout: ()=>{dispatch(logoutCaller())} 
     }

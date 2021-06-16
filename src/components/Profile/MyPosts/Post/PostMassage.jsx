@@ -9,7 +9,7 @@ const PostMassage = (props) => {
   return (
     <form onSubmit = {props.handleSubmit}>
       <Field component = {Textarea} placeholder = {'write new post'} name = {'newPost'} validate = {[ requiredField, maxLength20 ]}/>
-      <button>Add post</button>
+      <button className="btn btn-info">Add post</button>
     </form>
   )
 }

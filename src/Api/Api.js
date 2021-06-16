@@ -11,7 +11,7 @@ export const sendLoginData = (email, password) =>{
 }
 
 export const setProfileAPI = (userId) => {
-    return instance.get(`profile/${userId}`,)   
+    return instance.get(`profile/${userId}`,)    
 }
 
 export const getProfileStatus = (userId) => {
@@ -19,8 +19,11 @@ export const getProfileStatus = (userId) => {
 }
 
 export const updateStatusAPI = (status) => {
-    console.log({status:status})
     return instance.put(`/profile/status`,{"status": status})   
+}
+
+export const savaProfileDataAPI = (profile) => {
+    return instance.put(`/profile`, profile)   
 }
 
 export const getUsers = (currentPage = 1, pageSize = 10) => { 
@@ -40,9 +43,21 @@ export const loginAPI = () =>{
     return instance.get(`auth/me`,)
 }
 
-export const loginAuthMeAPI = (email, password, rememberMe) =>{
-    return instance.post(`auth/login`,{email, password, rememberMe})
+export const loginAuthMeAPI = (email, password, rememberMe, captcha=null) =>{
+    return instance.post(`auth/login`,{email, password, rememberMe, captcha })
 }
 export const logOutAPI = () =>{
     return instance.delete(`auth/login`,)
+}
+export const savePhotoApi = (file) => {
+    var formData = new FormData()
+    formData.append("image", file)
+    return instance.put(`profile/photo`, formData, {
+        headers: {
+        'Content-Type': 'multipart/form-data'
+        }
+    })
+}
+export const securityAPI = () => {
+    return instance.delete(`/security/get-captcha-url`, {}, )
 }

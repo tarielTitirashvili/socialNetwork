@@ -1,4 +1,4 @@
-import { createStore, combineReducers , applyMiddleware} from "redux"
+import { createStore, combineReducers , applyMiddleware, compose} from "redux"
 import addMassageReducer from "./reducer/addMassageReducer"
 import loginReducer from "./reducer/loginReducer"
 import profileReducer from "./reducer/profileReducer"
@@ -17,7 +17,8 @@ let reducers = combineReducers(
         form: formReducer,
     }
 )
-
-let store = createStore(reducers, applyMiddleware(thunk))
-
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
+    applyMiddleware(thunk)))
+// let store = createStore(reducers, applyMiddleware(thunk))
 export default store

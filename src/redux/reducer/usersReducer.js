@@ -94,27 +94,26 @@ export const getUsersThunkAC = (currentPage, pagesize) => {
   }
 }
 export const unFollow = (id) => {
-  return (dispatch) =>{
+  return async (dispatch) =>{
     dispatch(followingClickedAC(true, id))
-    unfollowAPI(id)
-    .then((response) =>{
-        if(response.data.resultCode === 0){
-            dispatch(unFollowAC(id))
-        }
-        dispatch(followingClickedAC(false,id))
-    })
+    
+
+    let response = await unfollowAPI(id)
+    if(response.data.resultCode === 0){
+      dispatch(unFollowAC(id))
+    }
+    dispatch(followingClickedAC(false,id))
   }
 }
 export const follow = (id) => {
-  return (dispatch) =>{
+  return async (dispatch) =>{
     dispatch(followingClickedAC(true, id))
-    followAPI(id)
-    .then((response) =>{
-        if(response.data.resultCode === 0){
-          dispatch(followAC(id))
-        }
-        dispatch(followingClickedAC(false, id))
-    })
+    
+    let response = await followAPI(id)
+    if(response.data.resultCode === 0){
+      dispatch(followAC(id))
+    }
+    dispatch(followingClickedAC(false, id))
   }
 }
 export default usersReducer

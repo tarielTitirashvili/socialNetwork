@@ -11,7 +11,7 @@ const MyPosts = (props) => {
   }
   let postContent = props.postContent
 
-  let posting = postContent.map(d => <Post kay={ d.id } massage={ d.text } likeNum={ d.likes } />)
+  let posting = postContent.map((d) => <Post key={ d.id } massage={ d.text } likeNum={ d.likes } />)
   return (
     <div className={ css.send }>
       <NewPost onSubmit = {onSubmit} />

@@ -38,7 +38,7 @@ const addMassageReducer = (state = initialState, action) => {
       let stateCopy = { ...state }
       stateCopy.massages = [ ...state.massages ]
       let newMassageContent = {
-        id: 4,
+        id: stateCopy.massages.length,
         massage: action.massage,
         me: true
       }

@@ -6,7 +6,6 @@ import Dialogs from './Dialogs'
 
 const mapStateToProps = (state) => {
     return {
-        newMassageText: state.dialogsPage.newMassageText,
         massages: state.dialogsPage.massages,
         dialogFriends: state.dialogsPage.dialogFriends,
         isAuthorized: state.login.isAuthorized,
