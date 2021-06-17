@@ -5,7 +5,7 @@ export const requiredField = (value) => {
 
 export const maxLength = (lengthNumber) => {
     return(value)=>{
-        if (value.length > lengthNumber)return `field value should be less then ${lengthNumber}`
+        if (value.length > lengthNumber)return <div>{`field value should be less then ${lengthNumber}`}</div>
         return undefined
     }
 } 

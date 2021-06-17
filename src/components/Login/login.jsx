@@ -15,7 +15,6 @@ const Login = (props) =>{
     if(props.isAuthorized === true)return <Redirect to = '/profile' />
     return(
         <div className = {css.wrapper}>
-            <h2>login</h2>
             <LoginReduxForm 
                 onSubmit={onSubmit}
                 captchaURL = {props.captchaURL}
